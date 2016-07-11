@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>Btrie Blog</title>
+  <subtitle>Simple is Better</subtitle>
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://blog.btrie.com/"/>
+  <updated>2016-07-11T13:34:25.000Z</updated>
+  <id>http://blog.btrie.com/</id>
+  
+  <author>
+    <name>btrie.com</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Every dog has his day!</title>
+    <link href="http://blog.btrie.com/2016/07/06/Every-dog-has-his-day/"/>
+    <id>http://blog.btrie.com/2016/07/06/Every-dog-has-his-day/</id>
+    <published>2016-07-06T08:26:28.000Z</published>
+    <updated>2016-07-11T13:34:25.000Z</updated>
+    
+    <content type="html">&lt;p&gt;么~么洞洞 共同答數完後&lt;/p&gt;
+&lt;p&gt;嘿咻嘿咻嘿咻  偶A偶A偶A~&lt;/p&gt;
+&lt;p&gt;我愛跑步，跑步愛我，天天跑步，天天快樂！&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;么~么洞洞 共同答數完後&lt;/p&gt;
+&lt;p&gt;嘿咻嘿咻嘿咻  偶A偶A偶A~&lt;/p&gt;
+&lt;p&gt;我愛跑步，跑步愛我，天天跑步，天天快樂！&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="other" scheme="http://blog.btrie.com/tags/other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Today is not my day</title>
+    <link href="http://blog.btrie.com/2016/07/05/today-is-not-my-day/"/>
+    <id>http://blog.btrie.com/2016/07/05/today-is-not-my-day/</id>
+    <published>2016-07-05T13:35:02.000Z</published>
+    <updated>2016-07-11T13:34:25.000Z</updated>
+    
+    <content type="html">&lt;p&gt;身是菩提樹， 心如明鏡台， 時時勤拂拭， 勿使惹塵埃。&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;身是菩提樹， 心如明鏡台， 時時勤拂拭， 勿使惹塵埃。&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="other" scheme="http://blog.btrie.com/tags/other/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Grok VIM</title>
+    <link href="http://blog.btrie.com/2013/03/03/Grok-VIM/"/>
+    <id>http://blog.btrie.com/2013/03/03/Grok-VIM/</id>
+    <published>2013-03-03T07:07:09.000Z</published>
+    <updated>2016-07-06T07:10:58.000Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://learnvimscriptthehardway.stevelosh.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Learn vim the hard way&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;concept&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Most of the information below (along with more beginner info) can be found in&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;:help help-summary&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Vim’s help is accessible through the built-in command &lt;strong&gt;:help&lt;/strong&gt; (and can be searched with &lt;strong&gt;:helpgrep&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;Tab completion with the right prefixes makes it pretty quick to find what you’re looking for&lt;br&gt;if you already know something about the command:&lt;br&gt;&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;: is used for cmdline/Ex-mode commands&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;:help :help&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;‘ is used for options&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;:help &amp;apos;incsearch&amp;apos;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;No prefix for normal mode commands&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;:help CTRL-]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;i for insert mode&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;:help i_CTRL-[&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;v for visual mode&lt;/p&gt;
+  &lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;:help v_CTRL-]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://learnvimscriptthehardway.stevelosh.com/&quot;&gt;Learn vim the hard way&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://stackoverflow.com/questions/1218390/what-is-your-most-productive-shortcut-with-vim/1220118#1220118&quot;&gt;concept&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Most of the information below (along with more beginner info) can be found in&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;:help help-summary&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Vim’s help is accessible through the built-in command &lt;strong&gt;:help&lt;/strong&gt; (and can be searched with &lt;strong&gt;:helpgrep&lt;/strong&gt;).&lt;/p&gt;
+&lt;p&gt;Tab completion with the right prefixes makes it pretty quick to find what you’re looking for&lt;br&gt;if you already know something about the command:&lt;br&gt;
+    
+    </summary>
+    
+    
+      <category term="vim" scheme="http://blog.btrie.com/tags/vim/"/>
+    
+  </entry>
+  
+</feed>
