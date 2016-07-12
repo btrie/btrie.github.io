@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.btrie.com/"/>
-  <updated>2016-07-11T13:34:25.000Z</updated>
+  <updated>2016-07-12T05:57:43.000Z</updated>
   <id>http://blog.btrie.com/</id>
   
   <author>
@@ -14,6 +14,55 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>CSS Sprites</title>
+    <link href="http://blog.btrie.com/posts/css-sprites/"/>
+    <id>http://blog.btrie.com/posts/css-sprites/</id>
+    <published>2016-07-12T02:45:22.000Z</published>
+    <updated>2016-07-12T05:57:43.000Z</updated>
+    
+    <content type="html">&lt;p&gt;使用 &lt;a href=&quot;https://nodejs.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NodeJS&lt;/a&gt; 製作一張圖包含所有圖檔，修改各個圖檔成所需要的大小，並提供 CSS 存取單一圖檔。&lt;/p&gt;
+&lt;p&gt;當網站有很多圖檔，需要讀取多次才能下載所有圖檔，將所有圖檔包成一張圖，減少對伺服器請求次數。 以國旗為例, 將各國國旗轉成一張圖，利用CSS顯示單一國旗.&lt;/p&gt;
+&lt;h2 id=&quot;工具&quot;&gt;&lt;a href=&quot;#工具&quot; class=&quot;headerlink&quot; title=&quot;工具&quot;&gt;&lt;/a&gt;工具&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/EyalAr/lwip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lwip&lt;/a&gt; Light Weight Image Processor for NodeJS&lt;br&gt;改變圖檔大小&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/sprity/sprity&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sprity&lt;/a&gt; A image sprite generator&lt;br&gt;產生單一圖檔與 CSS&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h2 id=&quot;實作&quot;&gt;&lt;a href=&quot;#實作&quot; class=&quot;headerlink&quot; title=&quot;實作&quot;&gt;&lt;/a&gt;實作&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;準備所有國旗放在同一個目錄 &lt;code&gt;flags_src/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/EyalAr/lwip&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;lwip&lt;/a&gt; 更改圖檔大小(40x40)後, 放至另一個暫存目錄 &lt;code&gt;flags_tmp/&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sprity/sprity&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;sprity&lt;/a&gt; 將 &lt;code&gt;flags_tmp/&lt;/code&gt; 打包成一個圖檔(&lt;code&gt;flags_40x40.png&lt;/code&gt;) 和 CSS(&lt;code&gt;flags_40x40.css&lt;/code&gt;)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;修改一個圖檔, 改變大小成 &lt;code&gt;size&lt;/code&gt;&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; flagPath = path.resolve(flags_src, flagName)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; tmpFlagPath = path.resolve(flags_tmp, flagName)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;lwip.open(flagPath, (err, image) =&amp;gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  image.batch()&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    .resize(size)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    .writeFile(tmpFlagPath, cb);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;產生圖檔與CSS&lt;br&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; name = &lt;span class=&quot;string&quot;&gt;&#39;flags_&#39;&lt;/span&gt; + size + &lt;span class=&quot;string&quot;&gt;&#39;x&#39;&lt;/span&gt; + size&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; outPath = &lt;span class=&quot;string&quot;&gt;&#39;.&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; options = &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  src: flags_tmp + &lt;span class=&quot;string&quot;&gt;&#39;/*.png&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  out: outPath,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  margin: &lt;span class=&quot;number&quot;&gt;0&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  name: name,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  style: name + &lt;span class=&quot;string&quot;&gt;&#39;.css&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  cssPath: &lt;span class=&quot;string&quot;&gt;&#39;/public&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;sprity.create(options, (err) =&amp;gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;keyword&quot;&gt;if&lt;/span&gt; (err) &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.error(err);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125; &lt;span class=&quot;keyword&quot;&gt;else&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;built_in&quot;&gt;console&lt;/span&gt;.log(&lt;span class=&quot;string&quot;&gt;&#39;ok&#39;&lt;/span&gt;);&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;注意: &lt;code&gt;cssPath&lt;/code&gt; 要跟實際圖檔 URL Path 一樣, 產生的 CSS&lt;br&gt;&lt;figure class=&quot;highlight css&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;selector-class&quot;&gt;.icon&lt;/span&gt; &amp;#123;                                                                         &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;attribute&quot;&gt;background-image&lt;/span&gt;: &lt;span class=&quot;built_in&quot;&gt;url&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;/public/flags_40x40.png&#39;&lt;/span&gt;);                             &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;comment&quot;&gt;/* ... */&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;selector-class&quot;&gt;.icon-USD&lt;/span&gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;attribute&quot;&gt;background-position&lt;/span&gt;: -&lt;span class=&quot;number&quot;&gt;0px&lt;/span&gt; -&lt;span class=&quot;number&quot;&gt;5280px&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;attribute&quot;&gt;width&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;40px&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &lt;span class=&quot;attribute&quot;&gt;height&lt;/span&gt;: &lt;span class=&quot;number&quot;&gt;40px&lt;/span&gt;;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;使用特定圖檔&lt;br&gt;&lt;figure class=&quot;highlight html&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;icon icon-TW&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;icon icon-JP&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt; &lt;span class=&quot;attr&quot;&gt;class&lt;/span&gt;=&lt;span class=&quot;string&quot;&gt;&quot;icon icon-US&quot;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&quot;tag&quot;&gt;&amp;lt;/&lt;span class=&quot;name&quot;&gt;div&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;其他&quot;&gt;&lt;a href=&quot;#其他&quot; class=&quot;headerlink&quot; title=&quot;其他&quot;&gt;&lt;/a&gt;其他&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/sherdeadlock/css-sprites-example&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Github 完整範例&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/jorgebastida/glue&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;glue&lt;/a&gt; python, 功能多&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;使用 &lt;a href=&quot;https://nodejs.org&quot;&gt;NodeJS&lt;/a&gt; 製作一張圖包含所有圖檔，修改各個圖檔成所需要的大小，並提供 CSS 存取單一圖檔。&lt;/p&gt;
+&lt;p&gt;當網站有很多圖檔，需要讀取多次才能下載所有圖檔，將所有圖檔包成一張圖，減少對伺服器請求次數。 以國旗為例, 將各國國旗轉成一張圖，利用CSS顯示單一國旗.&lt;/p&gt;
+&lt;h2 id=&quot;工具&quot;&gt;&lt;a href=&quot;#工具&quot; class=&quot;headerlink&quot; title=&quot;工具&quot;&gt;&lt;/a&gt;工具&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/EyalAr/lwip&quot;&gt;lwip&lt;/a&gt; Light Weight Image Processor for NodeJS&lt;br&gt;改變圖檔大小&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/sprity/sprity&quot;&gt;sprity&lt;/a&gt; A image sprite generator&lt;br&gt;產生單一圖檔與 CSS&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="css" scheme="http://blog.btrie.com/tags/css/"/>
+    
+  </entry>
   
   <entry>
     <title>Every dog has his day!</title>

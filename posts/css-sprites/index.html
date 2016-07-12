@@ -1,0 +1,210 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>CSS Sprites | Btrie Blog</title>
+  <meta name="author" content="btrie.com">
+
+  <meta name="description" content="使用 NodeJS 製作一張圖包含所有圖檔，修改各個圖檔成所需要的大小，並提供 CSS 存取單一圖檔。
+當網站有很多圖檔，需要讀取多次才能下載所有圖檔，將所有圖檔包成一張圖，減少對伺服器請求次數。 以國旗為例, 將各國國旗轉成一張圖，利用CSS顯示單一國旗.
+工具
+lwip Light Weight Image Processor for NodeJS改變圖檔大小
+
+sprity A image">
+<meta property="og:type" content="article">
+<meta property="og:title" content="CSS Sprites">
+<meta property="og:url" content="http://blog.btrie.com/posts/css-sprites/index.html">
+<meta property="og:site_name" content="Btrie Blog">
+<meta property="og:description" content="使用 NodeJS 製作一張圖包含所有圖檔，修改各個圖檔成所需要的大小，並提供 CSS 存取單一圖檔。
+當網站有很多圖檔，需要讀取多次才能下載所有圖檔，將所有圖檔包成一張圖，減少對伺服器請求次數。 以國旗為例, 將各國國旗轉成一張圖，利用CSS顯示單一國旗.
+工具
+lwip Light Weight Image Processor for NodeJS改變圖檔大小
+
+sprity A image">
+<meta property="og:updated_time" content="2016-07-12T05:57:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="CSS Sprites">
+<meta name="twitter:description" content="使用 NodeJS 製作一張圖包含所有圖檔，修改各個圖檔成所需要的大小，並提供 CSS 存取單一圖檔。
+當網站有很多圖檔，需要讀取多次才能下載所有圖檔，將所有圖檔包成一張圖，減少對伺服器請求次數。 以國旗為例, 將各國國旗轉成一張圖，利用CSS顯示單一國旗.
+工具
+lwip Light Weight Image Processor for NodeJS改變圖檔大小
+
+sprity A image">
+<meta property="fb:app_id" content="505523602969473">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta name="google-site-verification" content="8B6cPk_OXHv0e-EYAABTwu-lWiovmNLQMebwF7WE9fg" />
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Btrie Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Btrie Blog</a></h1>
+  <h2>Simple is Better</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/atom.xml">RSS</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <time datetime="2016-07-12T02:45:22.000Z"><a href="/posts/css-sprites/">2016-07-12</a></time>
+      
+      
+  
+    <h1 class="title">CSS Sprites</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>使用 <a href="https://nodejs.org" target="_blank" rel="external">NodeJS</a> 製作一張圖包含所有圖檔，修改各個圖檔成所需要的大小，並提供 CSS 存取單一圖檔。</p>
+<p>當網站有很多圖檔，需要讀取多次才能下載所有圖檔，將所有圖檔包成一張圖，減少對伺服器請求次數。 以國旗為例, 將各國國旗轉成一張圖，利用CSS顯示單一國旗.</p>
+<h2 id="工具"><a href="#工具" class="headerlink" title="工具"></a>工具</h2><ul>
+<li><p><a href="https://github.com/EyalAr/lwip" target="_blank" rel="external">lwip</a> Light Weight Image Processor for NodeJS<br>改變圖檔大小</p>
+</li>
+<li><p><a href="https://github.com/sprity/sprity" target="_blank" rel="external">sprity</a> A image sprite generator<br>產生單一圖檔與 CSS</p>
+</li>
+</ul>
+<a id="more"></a>
+<h2 id="實作"><a href="#實作" class="headerlink" title="實作"></a>實作</h2><ul>
+<li>準備所有國旗放在同一個目錄 <code>flags_src/</code></li>
+<li><a href="https://github.com/EyalAr/lwip" target="_blank" rel="external">lwip</a> 更改圖檔大小(40x40)後, 放至另一個暫存目錄 <code>flags_tmp/</code></li>
+<li><a href="https://github.com/sprity/sprity" target="_blank" rel="external">sprity</a> 將 <code>flags_tmp/</code> 打包成一個圖檔(<code>flags_40x40.png</code>) 和 CSS(<code>flags_40x40.css</code>)</li>
+</ul>
+<p>修改一個圖檔, 改變大小成 <code>size</code><br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> flagPath = path.resolve(flags_src, flagName)</div><div class="line"><span class="keyword">var</span> tmpFlagPath = path.resolve(flags_tmp, flagName)</div><div class="line">lwip.open(flagPath, (err, image) =&gt; &#123;</div><div class="line">  image.batch()</div><div class="line">    .resize(size)</div><div class="line">    .writeFile(tmpFlagPath, cb);</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>產生圖檔與CSS<br><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> name = <span class="string">'flags_'</span> + size + <span class="string">'x'</span> + size</div><div class="line"><span class="keyword">var</span> outPath = <span class="string">'.'</span></div><div class="line"><span class="keyword">var</span> options = &#123;</div><div class="line">  src: flags_tmp + <span class="string">'/*.png'</span>,</div><div class="line">  out: outPath,</div><div class="line">  margin: <span class="number">0</span>,</div><div class="line">  name: name,</div><div class="line">  style: name + <span class="string">'.css'</span>,</div><div class="line">  cssPath: <span class="string">'/public'</span>,</div><div class="line">&#125;</div><div class="line"></div><div class="line">sprity.create(options, (err) =&gt; &#123;</div><div class="line">  <span class="keyword">if</span> (err) &#123;</div><div class="line">    <span class="built_in">console</span>.error(err);</div><div class="line">  &#125; <span class="keyword">else</span> &#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">'ok'</span>);</div><div class="line">  &#125;</div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>注意: <code>cssPath</code> 要跟實際圖檔 URL Path 一樣, 產生的 CSS<br><figure class="highlight css"><table><tr><td class="code"><pre><div class="line"><span class="selector-class">.icon</span> &#123;                                                                         </div><div class="line">  <span class="attribute">background-image</span>: <span class="built_in">url</span>(<span class="string">'/public/flags_40x40.png'</span>);                             </div><div class="line">&#125;</div><div class="line"><span class="comment">/* ... */</span></div><div class="line"><span class="selector-class">.icon-USD</span> &#123;</div><div class="line">  <span class="attribute">background-position</span>: -<span class="number">0px</span> -<span class="number">5280px</span>;</div><div class="line">  <span class="attribute">width</span>: <span class="number">40px</span>;</div><div class="line">  <span class="attribute">height</span>: <span class="number">40px</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>使用特定圖檔<br><figure class="highlight html"><table><tr><td class="code"><pre><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"icon icon-TW"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"icon icon-JP"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div><div class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"icon icon-US"</span>&gt;</span><span class="tag">&lt;/<span class="name">div</span>&gt;</span></div></pre></td></tr></table></figure></p>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><ul>
+<li><a href="https://github.com/sherdeadlock/css-sprites-example" target="_blank" rel="external">Github 完整範例</a></li>
+<li><a href="https://github.com/jorgebastida/glue" target="_blank" rel="external">glue</a> python, 功能多</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/css/">css</a>
+  </div>
+
+        <div class="fb-like" data-href="http://blog.btrie.com/posts/css-sprites/index.html" data-layout="button" data-action="like"
+     data-size="small" data-show-faces="true" data-share="true">
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+
+<div class="fb-comments" data-href="http://blog.btrie.com/posts/css-sprites/index.html" data-num-posts="5"
+     data-width="840" data-colorscheme="light">
+</div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" placeholder="Search">
+    <input type="hidden" name="q" value="site:blog.btrie.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css/">css</a><small>1</small></li>
+  
+    <li><a href="/tags/other/">other</a><small>2</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+  
+  &copy; 2016 btrie.com
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-76228731-3', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '505523602969473',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</body>
+</html>
