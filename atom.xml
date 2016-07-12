@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.btrie.com/"/>
-  <updated>2016-07-12T05:57:43.000Z</updated>
+  <updated>2016-07-12T13:17:57.000Z</updated>
   <id>http://blog.btrie.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.btrie.com/posts/css-sprites/"/>
     <id>http://blog.btrie.com/posts/css-sprites/</id>
     <published>2016-07-12T02:45:22.000Z</published>
-    <updated>2016-07-12T05:57:43.000Z</updated>
+    <updated>2016-07-12T13:17:57.000Z</updated>
     
     <content type="html">&lt;p&gt;使用 &lt;a href=&quot;https://nodejs.org&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;NodeJS&lt;/a&gt; 製作一張圖包含所有圖檔，修改各個圖檔成所需要的大小，並提供 CSS 存取單一圖檔。&lt;/p&gt;
 &lt;p&gt;當網站有很多圖檔，需要讀取多次才能下載所有圖檔，將所有圖檔包成一張圖，減少對伺服器請求次數。 以國旗為例, 將各國國旗轉成一張圖，利用CSS顯示單一國旗.&lt;/p&gt;
