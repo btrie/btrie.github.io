@@ -17,8 +17,8 @@
   
   <entry>
     <title>Every dog has his day!</title>
-    <link href="http://blog.btrie.com/2016/07/06/Every-dog-has-his-day/"/>
-    <id>http://blog.btrie.com/2016/07/06/Every-dog-has-his-day/</id>
+    <link href="http://blog.btrie.com/posts/every-dog-has-his-day/"/>
+    <id>http://blog.btrie.com/posts/every-dog-has-his-day/</id>
     <published>2016-07-06T08:26:28.000Z</published>
     <updated>2016-07-11T13:34:25.000Z</updated>
     
@@ -43,8 +43,8 @@
   
   <entry>
     <title>Today is not my day</title>
-    <link href="http://blog.btrie.com/2016/07/05/today-is-not-my-day/"/>
-    <id>http://blog.btrie.com/2016/07/05/today-is-not-my-day/</id>
+    <link href="http://blog.btrie.com/posts/today-is-not-my-day/"/>
+    <id>http://blog.btrie.com/posts/today-is-not-my-day/</id>
     <published>2016-07-05T13:35:02.000Z</published>
     <updated>2016-07-11T13:34:25.000Z</updated>
     
@@ -65,8 +65,8 @@
   
   <entry>
     <title>Grok VIM</title>
-    <link href="http://blog.btrie.com/2013/03/03/Grok-VIM/"/>
-    <id>http://blog.btrie.com/2013/03/03/Grok-VIM/</id>
+    <link href="http://blog.btrie.com/posts/grok-vim/"/>
+    <id>http://blog.btrie.com/posts/grok-vim/</id>
     <published>2013-03-03T07:07:09.000Z</published>
     <updated>2016-07-06T07:10:58.000Z</updated>
     
