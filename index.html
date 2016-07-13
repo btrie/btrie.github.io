@@ -66,116 +66,15 @@
     <div class="entry">
       
         <p>語法極簡的 Template Engine，只有 <code>9.29 KB</code>，沒有 <code>if</code>, <code>for</code> 等語法，透過值判斷進行那種流程。<br>不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合閱讀。</p>
-<p>官網 <a href="http://mustache.github.io/" target="_blank" rel="external">mustache</a> 列出所有支援的語言，各種流行語言都有函示庫支援。</p>
-<figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ npm install mustache --save</div></pre></td></tr></table></figure>
-<p>file extension: mustache, mst</p>
-<h2 id="Tags"><a href="#Tags" class="headerlink" title="Tags"></a>Tags</h2><p>tag in template, 列出所有語法</p>
-<table>
-<thead>
-<tr>
-<th>Tag</th>
-<th>Syntax</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="#Variable">Variable</a></td>
-<td><code>{{key}}</code></td>
-</tr>
-<tr>
-<td><a href="#Variable">Unescaped Variable</a></td>
-<td><code>{{&key}}</code> or <code>{{{key}}}</code></td>
-</tr>
-<tr>
-<td><a href="#Sections">Sections</a></td>
-<td><code>{{#key}} {{/key}}</code></td>
-</tr>
-<tr>
-<td><a href="#Sections-primitive-context">Sections primitive context</a></td>
-<td><code>{{.}}</code></td>
-</tr>
-<tr>
-<td><a href="#Inverted-Sections">Inverted Sections</a></td>
-<td><code>{{^key}} {{/key}}</code></td>
-</tr>
-<tr>
-<td>Comments</td>
-<td><code>{{! ignore me }}</code></td>
-</tr>
-<tr>
-<td><a href="#Partials">Partials</a></td>
-<td><code>{{> other_template}}</code></td>
-</tr>
-<tr>
-<td><a href="#Set-Delimiter">Set Delimiter</a></td>
-<td><code>{{=&lt;% %&gt;=}}</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="Values"><a href="#Values" class="headerlink" title="Values"></a>Values</h2><p>value in view, 類似 <code>helper</code></p>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Syntax</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="#function-value-of-Variable">function value of Variable</a></td>
-<td><code>function() { return this.first + this.second }</code></td>
-</tr>
-<tr>
-<td><a href="#lambda-value-of-Sections">lambda value of Sections</a></td>
-<td><code>() =&gt; (text, render) =&gt; render(text)</code></td>
-</tr>
-</tbody>
-</table>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><figure class="highlight javascript"><table><tr><td class="code"><pre><div class="line"><span class="keyword">var</span> Mustache = <span class="built_in">require</span>(<span class="string">'mustache'</span>)</div><div class="line"></div><div class="line">Mustache.render(</div><div class="line">  template  : <span class="built_in">String</span>,</div><div class="line">  view      : <span class="built_in">Object</span>,</div><div class="line">  partials? : <span class="built_in">Object</span>,</div><div class="line">) =&gt; <span class="built_in">String</span></div><div class="line"></div><div class="line">Mustache.parse(</div><div class="line">  template              : <span class="built_in">String</span>,</div><div class="line">  tags = [<span class="string">'&#123;&#123;'</span>, <span class="string">'&#125;&#125;'</span>]   : Tags,</div><div class="line">) =&gt; <span class="built_in">String</span></div><div class="line"></div><div class="line">interface Tags [<span class="built_in">String</span>, <span class="built_in">String</span>]</div></pre></td></tr></table></figure>
-<h2 id="Variable"><a href="#Variable" class="headerlink" title="Variable"></a>Variable</h2><ul>
-<li>HTML escaped by default</li>
-<li>unescape a variable: <code>{{& name}}</code> or <code>{{{name}}}</code></li>
-</ul>
-<p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;name&#125;&#125;</div><div class="line">&#123;&#123;&amp;name&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;name: <span class="string">'&lt;b&gt;Sherlock&lt;/b&gt;'</span>&#125;</div></pre></td></tr></table></figure></p>
-<p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&amp;lt;b&amp;gt;Sherlock&amp;lt;&amp;#x2F;b&amp;gt;</div><div class="line">&lt;b&gt;Sherlock&lt;/b&gt;</div></pre></td></tr></table></figure></p>
-<h2 id="Sections"><a href="#Sections" class="headerlink" title="Sections"></a>Sections</h2><p>當 value 是 <a href="https://developer.mozilla.org/en-US/docs/Glossary/Truthy" target="_blank" rel="external">truthy</a> 或者 Non-Empty Lists 才會 render section block<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;#key&#125;&#125;</div><div class="line">  section block</div><div class="line">&#123;&#123;/key&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>當 value 是 array, loop 所有 item, current context 變成 item<br>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;#child&#125;&#125;</div><div class="line">&#123;&#123;name&#125;&#125; &#123;&#123;group&#125;&#125;</div><div class="line">&#123;&#123;/child&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  name: <span class="string">'detective'</span>,</div><div class="line">  group: <span class="number">123</span>,</div><div class="line">  child: [</div><div class="line">    &#123;name: <span class="string">'John'</span>&#125;,</div><div class="line">    &#123;name: <span class="string">'Sherlock'</span>&#125;,</div><div class="line">    &#123;name: <span class="string">'Moriarty'</span>&#125;,</div><div class="line">  ]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">John 123</div><div class="line">Sherlock 123</div><div class="line">Moriarty 123</div></pre></td></tr></table></figure></p>
-<p>loop child 時, context 換成 array item, 所以取得對應的 <code>name</code>, 但是 <code>group</code> 不存在 context, 預設會遞迴地往 parent context 找。</p>
-<h2 id="Sections-primitive-context"><a href="#Sections-primitive-context" class="headerlink" title="Sections primitive context"></a>Sections primitive context</h2><p><code>{{.}}</code> 如果 item 不是 object, 則<code>.</code>表示目前的值</p>
-<p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;#child&#125;&#125;</div><div class="line">Child &#123;&#123;.&#125;&#125;</div><div class="line">&#123;&#123;/child&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  child: [<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Child 1</div><div class="line">Child 2</div><div class="line">Child 3</div></pre></td></tr></table></figure></p>
-<h2 id="Inverted-Sections"><a href="#Inverted-Sections" class="headerlink" title="Inverted Sections"></a>Inverted Sections</h2><p>當 value 是 <a href="https://developer.mozilla.org/zh-TW/docs/Glossary/Falsy" target="_blank" rel="external">falsy</a> 或者 Empty Lists 才會 render section block<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;^key&#125;&#125;</div><div class="line">  section block</div><div class="line">&#123;&#123;/key&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;^foo&#125;&#125;</div><div class="line">foo bar</div><div class="line">&#123;&#123;/foo&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;&#125;</div></pre></td></tr></table></figure></p>
-<p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">foo bar</div></pre></td></tr></table></figure></p>
-<h2 id="Partials"><a href="#Partials" class="headerlink" title="Partials"></a>Partials</h2><figure class="highlight js"><table><tr><td class="code"><pre><div class="line"><span class="keyword">let</span> header = <span class="string">'&#123;&#123;header&#125;&#125;\n'</span></div><div class="line"><span class="keyword">let</span> footer = <span class="string">'&#123;&#123;footer&#125;&#125;\n'</span></div><div class="line"><span class="keyword">let</span> partials = &#123;</div><div class="line">  header,</div><div class="line">  footer,</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">let</span> view = &#123;</div><div class="line">  header:  <span class="string">'Header'</span>,</div><div class="line">  content: <span class="string">'Content'</span>,</div><div class="line">  footer:  <span class="string">'Footer'</span>,</div><div class="line">&#125;                                                                           </div><div class="line"></div><div class="line"><span class="keyword">let</span> tpl = <span class="string">'&#123;&#123;&gt; header&#125;&#125;&#123;&#123;content&#125;&#125;\n&#123;&#123;&gt; footer&#125;&#125;'</span></div><div class="line"><span class="keyword">let</span> output = Mustache.render(tpl, view, partials)</div></pre></td></tr></table></figure>
-<p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Header</div><div class="line">Content</div><div class="line">Footer</div></pre></td></tr></table></figure></p>
-<h2 id="Set-Delimiter"><a href="#Set-Delimiter" class="headerlink" title="Set Delimiter"></a>Set Delimiter</h2><ul>
-<li><code>{{=&lt;% %&gt;=}}</code>:  <code>{{ }}</code> 改成erb語法 <code>&lt;% %&gt;</code></li>
-<li><code><%={{ }}="%"></%={{></code>:  <code>&lt;% %&gt;</code> 改回 <code>{{ }}</code></li>
-<li><code>{{=< >=}}</code>:    <code>{{ }}</code> 改成 <code>&lt; &gt;</code></li>
-<li><code><={{ }}=""></={{></code>:    <code>&lt; &gt;</code>   改回 <code>{{ }}</code></li>
-</ul>
-<p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;=&lt;% %&gt;=&#125;&#125;</div><div class="line">&lt;% name %&gt;</div><div class="line">&lt;%=&#123;&#123; &#125;&#125;=%&gt;</div><div class="line">&#123;&#123; name &#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;name: <span class="string">'Sherlock'</span>&#125;</div></pre></td></tr></table></figure></p>
-<p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Sherlock</div><div class="line">Sherlock</div></pre></td></tr></table></figure></p>
-<h2 id="function-value-of-Variable"><a href="#function-value-of-Variable" class="headerlink" title="function value of Variable"></a>function value of Variable</h2><p>當 value 是 <code>function</code>, <code>this</code> 為 current context。</p>
-<p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;#child&#125;&#125;</div><div class="line">&#123;&#123;name&#125;&#125;</div><div class="line">&#123;&#123;/child&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  name() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.first + <span class="string">' '</span> + <span class="keyword">this</span>.second</div><div class="line">  &#125;,</div><div class="line">  child: [</div><div class="line">    &#123;first: <span class="string">'John'</span>, second: <span class="string">'Watson'</span>&#125;,</div><div class="line">    &#123;first: <span class="string">'Sherlock'</span>, second: <span class="string">'Holmes'</span>&#125;,</div><div class="line">    &#123;first: <span class="string">'Jim'</span>, second: <span class="string">'Moriarty'</span>&#125;,</div><div class="line">  ],</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">John Watson</div><div class="line">Sherlock Holmes</div><div class="line">Jim Moriarty</div></pre></td></tr></table></figure></p>
-<h2 id="lambda-value-of-Sections"><a href="#lambda-value-of-Sections" class="headerlink" title="lambda value of Sections"></a>lambda value of Sections</h2><p>處理 child text</p>
-<p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;#bold&#125;&#125;Hello&#123;&#123;/bold&#125;&#125;</div></pre></td></tr></table></figure></p>
-<p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  bold() &#123;</div><div class="line">    <span class="keyword">return</span> (text, render) =&gt; &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">'&lt;b&gt;'</span> + render(text) + <span class="string">'&lt;/b&gt;'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>Render OUtput:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;b&gt;Hello&lt;/b&gt;</div></pre></td></tr></table></figure></p>
-
+<p>官網 <a href="http://mustache.github.io/">mustache</a> 列出所有支援的語言，各種流行語言都有函示庫支援。</p>
       
     </div>
     <footer>
       
+        
+          <div class="alignleft">
+            <a href="/2016/07/13/mustache-template/" class="more-link">Read More</a>
+          </div>
         
         
       
