@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.btrie.com/2016/07/13/mustache-template/</loc>
+    
+    <lastmod>2016-07-13T13:25:50.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.btrie.com/2016/07/12/css-sprites/</loc>
     
     <lastmod>2016-07-12T13:17:57.000Z</lastmod>

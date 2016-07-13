@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.btrie.com/"/>
-  <updated>2016-07-12T13:17:57.000Z</updated>
+  <updated>2016-07-13T13:25:50.000Z</updated>
   <id>http://blog.btrie.com/</id>
   
   <author>
@@ -14,6 +14,132 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Mustache Template</title>
+    <link href="http://blog.btrie.com/2016/07/13/mustache-template/"/>
+    <id>http://blog.btrie.com/2016/07/13/mustache-template/</id>
+    <published>2016-07-13T09:37:13.000Z</published>
+    <updated>2016-07-13T13:25:50.000Z</updated>
+    
+    <content type="html">&lt;p&gt;語法極簡的 Template Engine，只有 &lt;code&gt;9.29 KB&lt;/code&gt;，沒有 &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt; 等語法，透過值判斷進行那種流程。&lt;br&gt;不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合閱讀。&lt;/p&gt;
+&lt;p&gt;官網 &lt;a href=&quot;http://mustache.github.io/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mustache&lt;/a&gt; 列出所有支援的語言，各種流行語言都有函示庫支援。&lt;/p&gt;
+&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;$ npm install mustache --save&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;file extension: mustache, mst&lt;/p&gt;
+&lt;h2 id=&quot;Tags&quot;&gt;&lt;a href=&quot;#Tags&quot; class=&quot;headerlink&quot; title=&quot;Tags&quot;&gt;&lt;/a&gt;Tags&lt;/h2&gt;&lt;p&gt;tag in template, 列出所有語法&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Tag&lt;/th&gt;
+&lt;th&gt;Syntax&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#Variable&quot;&gt;Variable&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{{key}}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#Variable&quot;&gt;Unescaped Variable&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{{&amp;key}}&lt;/code&gt; or &lt;code&gt;{{{key}}}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#Sections&quot;&gt;Sections&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{{#key}} {{/key}}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#Sections-primitive-context&quot;&gt;Sections primitive context&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{{.}}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#Inverted-Sections&quot;&gt;Inverted Sections&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{{^key}} {{/key}}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Comments&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{{! ignore me }}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#Partials&quot;&gt;Partials&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{{&gt; other_template}}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#Set-Delimiter&quot;&gt;Set Delimiter&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;{{=&amp;lt;% %&amp;gt;=}}&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;Values&quot;&gt;&lt;a href=&quot;#Values&quot; class=&quot;headerlink&quot; title=&quot;Values&quot;&gt;&lt;/a&gt;Values&lt;/h2&gt;&lt;p&gt;value in view, 類似 &lt;code&gt;helper&lt;/code&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Value&lt;/th&gt;
+&lt;th&gt;Syntax&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#function-value-of-Variable&quot;&gt;function value of Variable&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;function() { return this.first + this.second }&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;#lambda-value-of-Sections&quot;&gt;lambda value of Sections&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;() =&amp;gt; (text, render) =&amp;gt; render(text)&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h2 id=&quot;API&quot;&gt;&lt;a href=&quot;#API&quot; class=&quot;headerlink&quot; title=&quot;API&quot;&gt;&lt;/a&gt;API&lt;/h2&gt;&lt;figure class=&quot;highlight javascript&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;var&lt;/span&gt; Mustache = &lt;span class=&quot;built_in&quot;&gt;require&lt;/span&gt;(&lt;span class=&quot;string&quot;&gt;&#39;mustache&#39;&lt;/span&gt;)&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Mustache.render(&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  template  : &lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  view      : &lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  partials? : &lt;span class=&quot;built_in&quot;&gt;Object&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;) =&amp;gt; &lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Mustache.parse(&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  template              : &lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  tags = [&lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;&amp;#123;&#39;&lt;/span&gt;, &lt;span class=&quot;string&quot;&gt;&#39;&amp;#125;&amp;#125;&#39;&lt;/span&gt;]   : Tags,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;) =&amp;gt; &lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;interface Tags [&lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;, &lt;span class=&quot;built_in&quot;&gt;String&lt;/span&gt;]&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&quot;Variable&quot;&gt;&lt;a href=&quot;#Variable&quot; class=&quot;headerlink&quot; title=&quot;Variable&quot;&gt;&lt;/a&gt;Variable&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;HTML escaped by default&lt;/li&gt;
+&lt;li&gt;unescape a variable: &lt;code&gt;{{&amp; name}}&lt;/code&gt; or &lt;code&gt;{{{name}}}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;name&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;&amp;amp;name&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;name: &lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;b&amp;gt;Sherlock&amp;lt;/b&amp;gt;&#39;&lt;/span&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Render Output:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;amp;lt;b&amp;amp;gt;Sherlock&amp;amp;lt;&amp;amp;#x2F;b&amp;amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;b&amp;gt;Sherlock&amp;lt;/b&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Sections&quot;&gt;&lt;a href=&quot;#Sections&quot; class=&quot;headerlink&quot; title=&quot;Sections&quot;&gt;&lt;/a&gt;Sections&lt;/h2&gt;&lt;p&gt;當 value 是 &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Glossary/Truthy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;truthy&lt;/a&gt; 或者 Non-Empty Lists 才會 render section block&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;#key&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  section block&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;/key&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;當 value 是 array, loop 所有 item, current context 變成 item&lt;br&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;#child&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;name&amp;#125;&amp;#125; &amp;#123;&amp;#123;group&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;/child&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  name: &lt;span class=&quot;string&quot;&gt;&#39;detective&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  group: &lt;span class=&quot;number&quot;&gt;123&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  child: [&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;name: &lt;span class=&quot;string&quot;&gt;&#39;John&#39;&lt;/span&gt;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;name: &lt;span class=&quot;string&quot;&gt;&#39;Sherlock&#39;&lt;/span&gt;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;name: &lt;span class=&quot;string&quot;&gt;&#39;Moriarty&#39;&lt;/span&gt;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  ]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Render Output:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;John 123&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Sherlock 123&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Moriarty 123&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;loop child 時, context 換成 array item, 所以取得對應的 &lt;code&gt;name&lt;/code&gt;, 但是 &lt;code&gt;group&lt;/code&gt; 不存在 context, 預設會遞迴地往 parent context 找。&lt;/p&gt;
+&lt;h2 id=&quot;Sections-primitive-context&quot;&gt;&lt;a href=&quot;#Sections-primitive-context&quot; class=&quot;headerlink&quot; title=&quot;Sections primitive context&quot;&gt;&lt;/a&gt;Sections primitive context&lt;/h2&gt;&lt;p&gt;&lt;code&gt;{{.}}&lt;/code&gt; 如果 item 不是 object, 則&lt;code&gt;.&lt;/code&gt;表示目前的值&lt;/p&gt;
+&lt;p&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;#child&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Child &amp;#123;&amp;#123;.&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;/child&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  child: [&lt;span class=&quot;number&quot;&gt;1&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;2&lt;/span&gt;, &lt;span class=&quot;number&quot;&gt;3&lt;/span&gt;]&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Render Output:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Child 1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Child 2&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Child 3&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Inverted-Sections&quot;&gt;&lt;a href=&quot;#Inverted-Sections&quot; class=&quot;headerlink&quot; title=&quot;Inverted Sections&quot;&gt;&lt;/a&gt;Inverted Sections&lt;/h2&gt;&lt;p&gt;當 value 是 &lt;a href=&quot;https://developer.mozilla.org/zh-TW/docs/Glossary/Falsy&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;falsy&lt;/a&gt; 或者 Empty Lists 才會 render section block&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;^key&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  section block&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;/key&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;^foo&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;foo bar&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;/foo&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Render Output:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;foo bar&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Partials&quot;&gt;&lt;a href=&quot;#Partials&quot; class=&quot;headerlink&quot; title=&quot;Partials&quot;&gt;&lt;/a&gt;Partials&lt;/h2&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; header = &lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;&amp;#123;header&amp;#125;&amp;#125;\n&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; footer = &lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;&amp;#123;footer&amp;#125;&amp;#125;\n&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; partials = &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  header,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  footer,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; view = &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  header:  &lt;span class=&quot;string&quot;&gt;&#39;Header&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  content: &lt;span class=&quot;string&quot;&gt;&#39;Content&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  footer:  &lt;span class=&quot;string&quot;&gt;&#39;Footer&#39;&lt;/span&gt;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;                                                                           &lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; tpl = &lt;span class=&quot;string&quot;&gt;&#39;&amp;#123;&amp;#123;&amp;gt; header&amp;#125;&amp;#125;&amp;#123;&amp;#123;content&amp;#125;&amp;#125;\n&amp;#123;&amp;#123;&amp;gt; footer&amp;#125;&amp;#125;&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;keyword&quot;&gt;let&lt;/span&gt; output = Mustache.render(tpl, view, partials)&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;Render Output:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Header&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Content&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Footer&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Set-Delimiter&quot;&gt;&lt;a href=&quot;#Set-Delimiter&quot; class=&quot;headerlink&quot; title=&quot;Set Delimiter&quot;&gt;&lt;/a&gt;Set Delimiter&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;{{=&amp;lt;% %&amp;gt;=}}&lt;/code&gt;:  &lt;code&gt;{{ }}&lt;/code&gt; 改成erb語法 &lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&lt;%={{ }}=&quot;%&quot;&gt;&lt;/%={{&gt;&lt;/code&gt;:  &lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt; 改回 &lt;code&gt;{{ }}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;{{=&lt; &gt;=}}&lt;/code&gt;:    &lt;code&gt;{{ }}&lt;/code&gt; 改成 &lt;code&gt;&amp;lt; &amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&lt;={{ }}=&quot;&quot;&gt;&lt;/={{&gt;&lt;/code&gt;:    &lt;code&gt;&amp;lt; &amp;gt;&lt;/code&gt;   改回 &lt;code&gt;{{ }}&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;=&amp;lt;% %&amp;gt;=&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;% name %&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;%=&amp;#123;&amp;#123; &amp;#125;&amp;#125;=%&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123; name &amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;name: &lt;span class=&quot;string&quot;&gt;&#39;Sherlock&#39;&lt;/span&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Render Output:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;Sherlock&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Sherlock&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;function-value-of-Variable&quot;&gt;&lt;a href=&quot;#function-value-of-Variable&quot; class=&quot;headerlink&quot; title=&quot;function value of Variable&quot;&gt;&lt;/a&gt;function value of Variable&lt;/h2&gt;&lt;p&gt;當 value 是 &lt;code&gt;function&lt;/code&gt;, &lt;code&gt;this&lt;/code&gt; 為 current context。&lt;/p&gt;
+&lt;p&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;#child&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;name&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;/child&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  name() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.first + &lt;span class=&quot;string&quot;&gt;&#39; &#39;&lt;/span&gt; + &lt;span class=&quot;keyword&quot;&gt;this&lt;/span&gt;.second&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  child: [&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;first: &lt;span class=&quot;string&quot;&gt;&#39;John&#39;&lt;/span&gt;, second: &lt;span class=&quot;string&quot;&gt;&#39;Watson&#39;&lt;/span&gt;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;first: &lt;span class=&quot;string&quot;&gt;&#39;Sherlock&#39;&lt;/span&gt;, second: &lt;span class=&quot;string&quot;&gt;&#39;Holmes&#39;&lt;/span&gt;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#123;first: &lt;span class=&quot;string&quot;&gt;&#39;Jim&#39;&lt;/span&gt;, second: &lt;span class=&quot;string&quot;&gt;&#39;Moriarty&#39;&lt;/span&gt;&amp;#125;,&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  ],&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Render Output:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;John Watson&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Sherlock Holmes&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;Jim Moriarty&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;lambda-value-of-Sections&quot;&gt;&lt;a href=&quot;#lambda-value-of-Sections&quot; class=&quot;headerlink&quot; title=&quot;lambda value of Sections&quot;&gt;&lt;/a&gt;lambda value of Sections&lt;/h2&gt;&lt;p&gt;處理 child text&lt;/p&gt;
+&lt;p&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;#bold&amp;#125;&amp;#125;Hello&amp;#123;&amp;#123;/bold&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  bold() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (text, render) =&amp;gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;b&amp;gt;&#39;&lt;/span&gt; + render(text) + &lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;/b&amp;gt;&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;Render OUtput:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;b&amp;gt;Hello&amp;lt;/b&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;語法極簡的 Template Engine，只有 &lt;code&gt;9.29 KB&lt;/code&gt;，沒有 &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt; 等語法，透過值判斷進行那種流程。&lt;br&gt;不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合
+    
+    </summary>
+    
+    
+      <category term="html" scheme="http://blog.btrie.com/tags/html/"/>
+    
+  </entry>
   
   <entry>
     <title>CSS Sprites</title>
