@@ -7,18 +7,24 @@
   <meta name="author" content="btrie.com">
 
   <meta name="description" content="語法極簡的 Template Engine，只有 9.29 KB，沒有 if, for 等語法，透過值判斷進行那種流程。不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合閱讀。
-官網 mustache 列出所有支援的語言，各種流行語言都有函示庫支援。">
+
+官網 mustache 列出所有支援的語言，各種流行語言都有函示庫支援。
+官方文件">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Mustache Template">
 <meta property="og:url" content="http://blog.btrie.com/2016/07/13/mustache-template/index.html">
 <meta property="og:site_name" content="Btrie Blog">
 <meta property="og:description" content="語法極簡的 Template Engine，只有 9.29 KB，沒有 if, for 等語法，透過值判斷進行那種流程。不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合閱讀。
-官網 mustache 列出所有支援的語言，各種流行語言都有函示庫支援。">
-<meta property="og:updated_time" content="2016-07-13T13:30:49.000Z">
+
+官網 mustache 列出所有支援的語言，各種流行語言都有函示庫支援。
+官方文件">
+<meta property="og:updated_time" content="2016-07-14T02:15:41.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mustache Template">
 <meta name="twitter:description" content="語法極簡的 Template Engine，只有 9.29 KB，沒有 if, for 等語法，透過值判斷進行那種流程。不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合閱讀。
-官網 mustache 列出所有支援的語言，各種流行語言都有函示庫支援。">
+
+官網 mustache 列出所有支援的語言，各種流行語言都有函示庫支援。
+官方文件">
 <meta property="fb:app_id" content="505523602969473">
 
   
@@ -69,7 +75,10 @@
     <div class="entry">
       
         <p>語法極簡的 Template Engine，只有 <code>9.29 KB</code>，沒有 <code>if</code>, <code>for</code> 等語法，透過值判斷進行那種流程。<br>不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合閱讀。</p>
-<p>官網 <a href="http://mustache.github.io/" target="_blank" rel="external">mustache</a> 列出所有支援的語言，各種流行語言都有函示庫支援。</p>
+<ul>
+<li>官網 <a href="http://mustache.github.io/" target="_blank" rel="external">mustache</a> 列出所有支援的語言，各種流行語言都有函示庫支援。</li>
+<li><a href="http://mustache.github.io/mustache.5.html" target="_blank" rel="external">官方文件</a></li>
+</ul>
 <a id="more"></a>
 <figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">$ npm install mustache --save</div></pre></td></tr></table></figure>
 <p>file extension: mustache, mst</p>
@@ -116,7 +125,7 @@
 </tr>
 </tbody>
 </table>
-<h2 id="Values"><a href="#Values" class="headerlink" title="Values"></a>Values</h2><p>value in view, 類似 <code>helper</code></p>
+<h2 id="Values"><a href="#Values" class="headerlink" title="Values"></a>Values</h2><p>value in view</p>
 <table>
 <thead>
 <tr>
@@ -126,7 +135,7 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="#function-value-of-Variable">function value of Variable</a></td>
+<td><a href="#Helper">Helper</a></td>
 <td><code>function() { return this.first + this.second }</code></td>
 </tr>
 <tr>
@@ -167,7 +176,7 @@
 <p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;=&lt;% %&gt;=&#125;&#125;</div><div class="line">&lt;% name %&gt;</div><div class="line">&lt;%=&#123;&#123; &#125;&#125;=%&gt;</div><div class="line">&#123;&#123; name &#125;&#125;</div></pre></td></tr></table></figure></p>
 <p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;name: <span class="string">'Sherlock'</span>&#125;</div></pre></td></tr></table></figure></p>
 <p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">Sherlock</div><div class="line">Sherlock</div></pre></td></tr></table></figure></p>
-<h2 id="function-value-of-Variable"><a href="#function-value-of-Variable" class="headerlink" title="function value of Variable"></a>function value of Variable</h2><p>當 value 是 <code>function</code>, <code>this</code> 為 current context。</p>
+<h2 id="Helper"><a href="#Helper" class="headerlink" title="Helper"></a>Helper</h2><p>當 value 是 <code>function</code>, <code>this</code> 為 current context。</p>
 <p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;#child&#125;&#125;</div><div class="line">&#123;&#123;name&#125;&#125;</div><div class="line">&#123;&#123;/child&#125;&#125;</div></pre></td></tr></table></figure></p>
 <p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  name() &#123;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.first + <span class="string">' '</span> + <span class="keyword">this</span>.second</div><div class="line">  &#125;,</div><div class="line">  child: [</div><div class="line">    &#123;first: <span class="string">'John'</span>, second: <span class="string">'Watson'</span>&#125;,</div><div class="line">    &#123;first: <span class="string">'Sherlock'</span>, second: <span class="string">'Holmes'</span>&#125;,</div><div class="line">    &#123;first: <span class="string">'Jim'</span>, second: <span class="string">'Moriarty'</span>&#125;,</div><div class="line">  ],</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>Render Output:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">John Watson</div><div class="line">Sherlock Holmes</div><div class="line">Jim Moriarty</div></pre></td></tr></table></figure></p>
