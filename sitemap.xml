@@ -2,9 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.btrie.com/about/index.html</loc>
+    
+    <lastmod>2016-07-19T02:55:28.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.btrie.com/2016/07/13/mustache-template/</loc>
     
-    <lastmod>2016-07-14T02:15:41.000Z</lastmod>
+    <lastmod>2016-07-14T13:26:12.000Z</lastmod>
     
   </url>
   
@@ -12,13 +19,6 @@
     <loc>http://blog.btrie.com/2016/07/12/css-sprites/</loc>
     
     <lastmod>2016-07-12T13:17:57.000Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://blog.btrie.com/about/index.html</loc>
-    
-    <lastmod>2016-07-10T00:38:15.000Z</lastmod>
     
   </url>
   

@@ -18,7 +18,7 @@
 
 官網 mustache 列出所有支援的語言，各種流行語言都有函示庫支援。
 官方文件">
-<meta property="og:updated_time" content="2016-07-14T02:15:41.000Z">
+<meta property="og:updated_time" content="2016-07-14T13:26:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Mustache Template">
 <meta name="twitter:description" content="語法極簡的 Template Engine，只有 9.29 KB，沒有 if, for 等語法，透過值判斷進行那種流程。不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合閱讀。
@@ -171,7 +171,7 @@
 <li><code>{{=&lt;% %&gt;=}}</code>:  <code>{{ }}</code> 改成erb語法 <code>&lt;% %&gt;</code></li>
 <li><code><%={{ }}="%"></%={{></code>:  <code>&lt;% %&gt;</code> 改回 <code>{{ }}</code></li>
 <li><code>{{=< >=}}</code>:    <code>{{ }}</code> 改成 <code>&lt; &gt;</code></li>
-<li><code><={{ }}=""></={{></code>:    <code>&lt; &gt;</code>   改回 <code>{{ }}</code></li>
+<li><code>&lt;={{ }}=&gt;</code>:    <code>&lt; &gt;</code>   改回 <code>{{ }}</code></li>
 </ul>
 <p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;=&lt;% %&gt;=&#125;&#125;</div><div class="line">&lt;% name %&gt;</div><div class="line">&lt;%=&#123;&#123; &#125;&#125;=%&gt;</div><div class="line">&#123;&#123; name &#125;&#125;</div></pre></td></tr></table></figure></p>
 <p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;name: <span class="string">'Sherlock'</span>&#125;</div></pre></td></tr></table></figure></p>
@@ -184,6 +184,36 @@
 <p>Template:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&#123;&#123;#bold&#125;&#125;Hello&#123;&#123;/bold&#125;&#125;</div></pre></td></tr></table></figure></p>
 <p>View:<br><figure class="highlight js"><table><tr><td class="code"><pre><div class="line">&#123;</div><div class="line">  bold() &#123;</div><div class="line">    <span class="keyword">return</span> (text, render) =&gt; &#123;</div><div class="line">      <span class="keyword">return</span> <span class="string">'&lt;b&gt;'</span> + render(text) + <span class="string">'&lt;/b&gt;'</span></div><div class="line">    &#125;</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
 <p>Render OUtput:<br><figure class="highlight plain"><table><tr><td class="code"><pre><div class="line">&lt;b&gt;Hello&lt;/b&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="Other-tools"><a href="#Other-tools" class="headerlink" title="Other tools"></a>Other tools</h2><table>
+<thead>
+<tr>
+<th>Package</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://github.com/bryanburgers/node-mustache-express" target="_blank" rel="external">mustache-express</a></td>
+<td>Lets you use mustache and Express together, including auto-loading partials.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/deepsweet/mustache-loader" target="_blank" rel="external">mustache-loader</a></td>
+<td>Webpack loader to parse mustache, based on hogan.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/rogeriopvl/gulp-mustache" target="_blank" rel="external">gulp-mustache</a></td>
+<td>Gulp plugin loading partials from disk or partials object.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/Siilwyn/mustache-prestatic" target="_blank" rel="external">mustache-prestatic</a></td>
+<td>Allowing multiple files and automatic partials mapping.</td>
+</tr>
+<tr>
+<td><a href="https://github.com/dasilvacontin/mustache-i18n" target="_blank" rel="external">mustache-i18n</a></td>
+<td>i18n plugin for mustache.js.</td>
+</tr>
+</tbody>
+</table>
 
       
     </div>

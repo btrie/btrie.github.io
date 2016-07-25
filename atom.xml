@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.btrie.com/"/>
-  <updated>2016-07-14T02:15:41.000Z</updated>
+  <updated>2016-07-14T13:26:12.000Z</updated>
   <id>http://blog.btrie.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.btrie.com/2016/07/13/mustache-template/"/>
     <id>http://blog.btrie.com/2016/07/13/mustache-template/</id>
     <published>2016-07-13T09:37:13.000Z</published>
-    <updated>2016-07-14T02:15:41.000Z</updated>
+    <updated>2016-07-14T13:26:12.000Z</updated>
     
     <content type="html">&lt;p&gt;語法極簡的 Template Engine，只有 &lt;code&gt;9.29 KB&lt;/code&gt;，沒有 &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;for&lt;/code&gt; 等語法，透過值判斷進行那種流程。&lt;br&gt;不只僅用在 HTML，codegen 程式語言也很合適，相當簡潔適合閱讀。&lt;/p&gt;
 &lt;ul&gt;
@@ -119,7 +119,7 @@
 &lt;li&gt;&lt;code&gt;{{=&amp;lt;% %&amp;gt;=}}&lt;/code&gt;:  &lt;code&gt;{{ }}&lt;/code&gt; 改成erb語法 &lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;&lt;%={{ }}=&quot;%&quot;&gt;&lt;/%={{&gt;&lt;/code&gt;:  &lt;code&gt;&amp;lt;% %&amp;gt;&lt;/code&gt; 改回 &lt;code&gt;{{ }}&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;{{=&lt; &gt;=}}&lt;/code&gt;:    &lt;code&gt;{{ }}&lt;/code&gt; 改成 &lt;code&gt;&amp;lt; &amp;gt;&lt;/code&gt;&lt;/li&gt;
-&lt;li&gt;&lt;code&gt;&lt;={{ }}=&quot;&quot;&gt;&lt;/={{&gt;&lt;/code&gt;:    &lt;code&gt;&amp;lt; &amp;gt;&lt;/code&gt;   改回 &lt;code&gt;{{ }}&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;lt;={{ }}=&amp;gt;&lt;/code&gt;:    &lt;code&gt;&amp;lt; &amp;gt;&lt;/code&gt;   改回 &lt;code&gt;{{ }}&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;=&amp;lt;% %&amp;gt;=&amp;#125;&amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;% name %&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;%=&amp;#123;&amp;#123; &amp;#125;&amp;#125;=%&amp;gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123; name &amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;name: &lt;span class=&quot;string&quot;&gt;&#39;Sherlock&#39;&lt;/span&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
@@ -132,6 +132,36 @@
 &lt;p&gt;Template:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&amp;#123;#bold&amp;#125;&amp;#125;Hello&amp;#123;&amp;#123;/bold&amp;#125;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;View:&lt;br&gt;&lt;figure class=&quot;highlight js&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  bold() &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; (text, render) =&amp;gt; &amp;#123;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;      &lt;span class=&quot;keyword&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;b&amp;gt;&#39;&lt;/span&gt; + render(text) + &lt;span class=&quot;string&quot;&gt;&#39;&amp;lt;/b&amp;gt;&#39;&lt;/span&gt;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;    &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;  &amp;#125;&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&amp;#125;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
 &lt;p&gt;Render OUtput:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&amp;lt;b&amp;gt;Hello&amp;lt;/b&amp;gt;&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;h2 id=&quot;Other-tools&quot;&gt;&lt;a href=&quot;#Other-tools&quot; class=&quot;headerlink&quot; title=&quot;Other tools&quot;&gt;&lt;/a&gt;Other tools&lt;/h2&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Package&lt;/th&gt;
+&lt;th&gt;Description&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/bryanburgers/node-mustache-express&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mustache-express&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Lets you use mustache and Express together, including auto-loading partials.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/deepsweet/mustache-loader&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mustache-loader&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Webpack loader to parse mustache, based on hogan.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/rogeriopvl/gulp-mustache&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;gulp-mustache&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Gulp plugin loading partials from disk or partials object.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/Siilwyn/mustache-prestatic&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mustache-prestatic&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;Allowing multiple files and automatic partials mapping.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;a href=&quot;https://github.com/dasilvacontin/mustache-i18n&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mustache-i18n&lt;/a&gt;&lt;/td&gt;
+&lt;td&gt;i18n plugin for mustache.js.&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
 </content>
     
     <summary type="html">
