@@ -2,6 +2,20 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://blog.btrie.com/2016/08/11/elasticsearch/</loc>
+    
+    <lastmod>2016-08-11T02:54:15.000Z</lastmod>
+    
+  </url>
+  
+  <url>
+    <loc>http://blog.btrie.com/2016/07/30/elasticsearch-nodejs-cheatsheet/</loc>
+    
+    <lastmod>2016-08-02T09:40:34.000Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://blog.btrie.com/about/index.html</loc>
     
     <lastmod>2016-07-19T02:55:28.000Z</lastmod>

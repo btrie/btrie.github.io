@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.btrie.com/"/>
-  <updated>2016-07-14T13:26:12.000Z</updated>
+  <updated>2016-08-11T02:54:15.000Z</updated>
   <id>http://blog.btrie.com/</id>
   
   <author>
@@ -14,6 +14,256 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Elasticsearch 架構</title>
+    <link href="http://blog.btrie.com/2016/08/11/elasticsearch/"/>
+    <id>http://blog.btrie.com/2016/08/11/elasticsearch/</id>
+    <published>2016-08-11T02:18:00.000Z</published>
+    <updated>2016-08-11T02:54:15.000Z</updated>
+    
+    <content type="html">&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#Storage&quot;&gt;Storage&lt;/a&gt;  儲存資料&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Index&quot;&gt;Index&lt;/a&gt;  建立資料索引&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Search&quot;&gt;Search&lt;/a&gt;  搜尋資料&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Relevance&quot;&gt;Relevance&lt;/a&gt;  評比搜尋結果相關性&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Aggregate&quot;&gt;Aggregate&lt;/a&gt;  搜尋結果後續處理&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Feature&quot;&gt;Feature&lt;/a&gt;  其他功能&lt;/li&gt;
+&lt;/ul&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;Storage&quot;&gt;&lt;a href=&quot;#Storage&quot; class=&quot;headerlink&quot; title=&quot;Storage&quot;&gt;&lt;/a&gt;Storage&lt;/h1&gt;&lt;p&gt;儲存方式與mongo類似, 每筆資料為document, index對應mongo collection,&lt;br&gt;id對應mongo id, type則表示document 有相同 schema(mapping).&lt;/p&gt;
+&lt;h3 id=&quot;index-type-id&quot;&gt;&lt;a href=&quot;#index-type-id&quot; class=&quot;headerlink&quot; title=&quot;index/type/id&quot;&gt;&lt;/a&gt;index/type/id&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;_index&lt;/code&gt;  is a collection of document, 類似 mongodb collection&lt;ul&gt;
+&lt;li&gt;Every index is built of one or more shards, and each shard can have many replicas.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_type&lt;/code&gt;  sub-partitions, 不同schema給不同type&lt;ul&gt;
+&lt;li&gt;name&lt;/li&gt;
+&lt;li&gt;mapping  定義 field type, 將 document 轉成 lucene 格式&lt;/li&gt;
+&lt;li&gt;lucene 並沒有 type, mapping&lt;/li&gt;
+&lt;li&gt;all types in an index share same mapping, 即時在不同type也不能重複定義mapping&lt;/li&gt;
+&lt;li&gt;同一個index的types, schema 要相近, sparse 會有 performance issue&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_id&lt;/code&gt;  uniquely identifies a document, provide your own &lt;code&gt;_id&lt;/code&gt; or let Elasticsearch generate one for you&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_version&lt;/code&gt;  &lt;ul&gt;
+&lt;li&gt;Every time a change is made to a document (including deleting it), the &lt;code&gt;_version&lt;/code&gt; number is incremented.&lt;/li&gt;
+&lt;li&gt;ensure that one part of your application doesn’t overwrite changes made by another part&lt;/li&gt;
+&lt;li&gt;20 character long, URL-safe, Base64-encoded GUID strings&lt;/li&gt;
+&lt;li&gt;FlakeID scheme&lt;/li&gt;
+&lt;li&gt;Optimistic Concurrency Control&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_source&lt;/code&gt;  contains the original JSON document&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;_uid&lt;/code&gt;  The &lt;code&gt;_type&lt;/code&gt; and &lt;code&gt;_id&lt;/code&gt; concatenated together as type#id&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;CRUD&quot;&gt;&lt;a href=&quot;#CRUD&quot; class=&quot;headerlink&quot; title=&quot;CRUD&quot;&gt;&lt;/a&gt;CRUD&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;create&lt;/strong&gt;&lt;br&gt;Create a document only if the document does not already exist. See Creating a New Document.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;index&lt;/strong&gt;&lt;br&gt;Create a new document or replace an existing document. See Indexing a Document and Updating a Whole Document.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;update&lt;/strong&gt;&lt;br&gt;Do a partial update on a document. See Partial Updates to Documents.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;delete&lt;/strong&gt;&lt;br&gt;Delete a document. See Deleting a Document.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;cluster&quot;&gt;&lt;a href=&quot;#cluster&quot; class=&quot;headerlink&quot; title=&quot;cluster&quot;&gt;&lt;/a&gt;cluster&lt;/h3&gt;&lt;h1 id=&quot;Index&quot;&gt;&lt;a href=&quot;#Index&quot; class=&quot;headerlink&quot; title=&quot;Index&quot;&gt;&lt;/a&gt;Index&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;mapping&lt;/code&gt;  定義欄位型態以及 analyzer, 透過mapping指定analyzer&lt;ul&gt;
+&lt;li&gt;can add a new field mapping&lt;/li&gt;
+&lt;li&gt;can’t change existing field mappings&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;analysis  使用analyzer把欄位轉成terms&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;analyzer&lt;/code&gt;  由以下三個步驟組成&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;char_filter&lt;/code&gt;  前置處理字串，例如拿掉HTML Tag&lt;ul&gt;
+&lt;li&gt;tidy up the string&lt;/li&gt;
+&lt;li&gt;strip out HTML&lt;/li&gt;
+&lt;li&gt;convert &lt;code&gt;&amp;amp;&lt;/code&gt; to &lt;code&gt;and&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;tokenizer&lt;/code&gt;&lt;ul&gt;
+&lt;li&gt;tokenize field value into individual &lt;code&gt;terms&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;An analyzer must have a single tokenizer&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;filter&lt;/code&gt;  add/remove/change terms&lt;ul&gt;
+&lt;li&gt;change terms&lt;ul&gt;
+&lt;li&gt;lowercasing&lt;/li&gt;
+&lt;li&gt;stopwords (a, and, the)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;add/remove terms&lt;ul&gt;
+&lt;li&gt;synonyms&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;Search&quot;&gt;&lt;a href=&quot;#Search&quot; class=&quot;headerlink&quot; title=&quot;Search&quot;&gt;&lt;/a&gt;Search&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;full-text field&lt;br&gt;the query will apply the same analyzer to the query string&lt;/li&gt;
+&lt;li&gt;exact-value field&lt;br&gt;search for the exact value that you have specified&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;Relevance&quot;&gt;&lt;a href=&quot;#Relevance&quot; class=&quot;headerlink&quot; title=&quot;Relevance&quot;&gt;&lt;/a&gt;Relevance&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;_score&lt;/code&gt;  The higher the &lt;code&gt;_score&lt;/code&gt;, the more relevant the document.&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;fuzzy&lt;/code&gt;  determine the &lt;code&gt;_score&lt;/code&gt; by calculating how similar the spelling of the found word is to the original search term&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;terms&lt;/code&gt;  incorporate the percentage of terms that were found&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;explain=true&lt;/code&gt;  the parameter produce an explanation with every search result&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;/index/type/id/_explain&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;em&gt;TF/IDF&lt;/em&gt;  term frequency/inverse document frequency&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Term frequency&lt;br&gt;term appear more often in the field, the more relevant&lt;/li&gt;
+&lt;li&gt;Inverse document frequency&lt;br&gt;term appear more often in the index, the less relevant&lt;/li&gt;
+&lt;li&gt;Field-length norm&lt;br&gt;field is more shorter, the less relevant&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;其他演算法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;term proximity in phrase queries&lt;/li&gt;
+&lt;li&gt;term similarity in fuzzy queries&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;Aggregate&quot;&gt;&lt;a href=&quot;#Aggregate&quot; class=&quot;headerlink&quot; title=&quot;Aggregate&quot;&gt;&lt;/a&gt;Aggregate&lt;/h1&gt;&lt;h1 id=&quot;Feature&quot;&gt;&lt;a href=&quot;#Feature&quot; class=&quot;headerlink&quot; title=&quot;Feature&quot;&gt;&lt;/a&gt;Feature&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;suggestions&lt;/li&gt;
+&lt;li&gt;geolocation&lt;/li&gt;
+&lt;li&gt;percolation&lt;/li&gt;
+&lt;li&gt;fuzzy&lt;/li&gt;
+&lt;li&gt;partial matching&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;#Storage&quot;&gt;Storage&lt;/a&gt;  儲存資料&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Index&quot;&gt;Index&lt;/a&gt;  建立資料索引&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Search&quot;&gt;Search&lt;/a&gt;  搜尋資料&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Relevance&quot;&gt;Relevance&lt;/a&gt;  評比搜尋結果相關性&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Aggregate&quot;&gt;Aggregate&lt;/a&gt;  搜尋結果後續處理&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;#Feature&quot;&gt;Feature&lt;/a&gt;  其他功能&lt;/li&gt;
+&lt;/ul&gt;
+    
+    </summary>
+    
+    
+      <category term="elasticsearch" scheme="http://blog.btrie.com/tags/elasticsearch/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>Elasticsearch NodeJS CheatSheet</title>
+    <link href="http://blog.btrie.com/2016/07/30/elasticsearch-nodejs-cheatsheet/"/>
+    <id>http://blog.btrie.com/2016/07/30/elasticsearch-nodejs-cheatsheet/</id>
+    <published>2016-07-30T10:09:52.000Z</published>
+    <updated>2016-08-02T09:40:34.000Z</updated>
+    
+    <content type="html">&lt;p&gt;紀錄常用 elasticsearch Node api, 範例&lt;/p&gt;
+&lt;a id=&quot;more&quot;&gt;&lt;/a&gt;
+&lt;h1 id=&quot;Index&quot;&gt;&lt;a href=&quot;#Index&quot; class=&quot;headerlink&quot; title=&quot;Index&quot;&gt;&lt;/a&gt;Index&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-create&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;indices.create&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-get&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;indices.get&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-delete&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;indices.delete&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-getmapping&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;indices.getMapping&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-putmapping&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;indices.putMapping&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-getsettings&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;indices.getSettings&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-putsettings&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;indices.putSettings&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;CRUD&quot;&gt;&lt;a href=&quot;#CRUD&quot; class=&quot;headerlink&quot; title=&quot;CRUD&quot;&gt;&lt;/a&gt;CRUD&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-create&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;create&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-index&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;index&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-reindex&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;reindex&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-get&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;get&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-getsource&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;getSource&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-mget&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mget&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-update&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;update&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-updatebyquery&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;updateByQuery&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-delete&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;delete&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-bulk&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;bulk&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-exists&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;exists&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-count&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;count&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;Search&quot;&gt;&lt;a href=&quot;#Search&quot; class=&quot;headerlink&quot; title=&quot;Search&quot;&gt;&lt;/a&gt;Search&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-search&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;search&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-msearch&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;msearch&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-suggest&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;suggest&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;Scroll&quot;&gt;&lt;a href=&quot;#Scroll&quot; class=&quot;headerlink&quot; title=&quot;Scroll&quot;&gt;&lt;/a&gt;Scroll&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-scroll&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;scroll&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-clearscroll&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;clearScroll&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&quot;geo&quot;&gt;&lt;a href=&quot;#geo&quot; class=&quot;headerlink&quot; title=&quot;geo&quot;&gt;&lt;/a&gt;geo&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-percolate&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;percolate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-mpercolate&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mpercolate&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-countpercolate&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;countPercolate&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!---
+### Template
+use the mustache language to pre render search requests
+* [searchTemplate]
+* [putTemplate]
+* [getTemplate]
+* [deleteTemplate]
+* [renderSearchTemplate]
+--&gt;
+&lt;h1 id=&quot;Debug&quot;&gt;&lt;a href=&quot;#Debug&quot; class=&quot;headerlink&quot; title=&quot;Debug&quot;&gt;&lt;/a&gt;Debug&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-explain&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;explain&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-fieldstats&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;fieldStats&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-searchshards&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;searchShards&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-analyze&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;indices.analyze&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Returns information and statistics on terms in the fields of a particular document.&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-termvectors&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;termvectors&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-mtermvectors&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;mtermvectors&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;!--
+indices.close
+
+indices.clearCache
+indices.deleteAlias
+indices.deleteTemplate
+indices.deleteWarmer
+indices.exists
+indices.existsAlias
+indices.existsTemplate
+indices.existsType
+indices.flush
+indices.flushSynced
+indices.forcemerge
+
+indices.getAlias
+indices.getAliases
+indices.getFieldMapping
+
+
+indices.getTemplate
+indices.getUpgrade
+indices.getWarmer
+indices.open
+indices.optimize
+indices.putAlias
+
+indices.putTemplate
+indices.putWarmer
+indices.recovery
+indices.refresh
+indices.segments
+indices.shardStores
+indices.stats
+indices.updateAliases
+indices.upgrade
+indices.validateQuery
+--&gt;
+</content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;紀錄常用 elasticsearch Node api, 範例&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="elasticsearch" scheme="http://blog.btrie.com/tags/elasticsearch/"/>
+    
+  </entry>
   
   <entry>
     <title>Mustache Template</title>

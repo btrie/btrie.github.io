@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Elasticsearch NodeJS CheatSheet | Btrie Blog</title>
+  <meta name="author" content="btrie.com">
+
+  <meta name="description" content="紀錄常用 elasticsearch Node api, 範例">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch NodeJS CheatSheet">
+<meta property="og:url" content="http://blog.btrie.com/2016/07/30/elasticsearch-nodejs-cheatsheet/index.html">
+<meta property="og:site_name" content="Btrie Blog">
+<meta property="og:description" content="紀錄常用 elasticsearch Node api, 範例">
+<meta property="og:updated_time" content="2016-08-02T09:40:34.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Elasticsearch NodeJS CheatSheet">
+<meta name="twitter:description" content="紀錄常用 elasticsearch Node api, 範例">
+<meta property="fb:app_id" content="505523602969473">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta name="google-site-verification" content="8B6cPk_OXHv0e-EYAABTwu-lWiovmNLQMebwF7WE9fg" />
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Btrie Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Btrie Blog</a></h1>
+  <h2>Simple is Better</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/atom.xml">RSS</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <time datetime="2016-07-30T10:09:52.000Z"><a href="/2016/07/30/elasticsearch-nodejs-cheatsheet/">2016-07-30</a></time>
+      
+      
+  
+    <h1 class="title">Elasticsearch NodeJS CheatSheet</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <p>紀錄常用 elasticsearch Node api, 範例</p>
+<a id="more"></a>
+<h1 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h1><ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-create" target="_blank" rel="external">indices.create</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-get" target="_blank" rel="external">indices.get</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-delete" target="_blank" rel="external">indices.delete</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-getmapping" target="_blank" rel="external">indices.getMapping</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-putmapping" target="_blank" rel="external">indices.putMapping</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-getsettings" target="_blank" rel="external">indices.getSettings</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-putsettings" target="_blank" rel="external">indices.putSettings</a></li>
+</ul>
+<h1 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h1><ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-create" target="_blank" rel="external">create</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-index" target="_blank" rel="external">index</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-reindex" target="_blank" rel="external">reindex</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-get" target="_blank" rel="external">get</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-getsource" target="_blank" rel="external">getSource</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-mget" target="_blank" rel="external">mget</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-update" target="_blank" rel="external">update</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-updatebyquery" target="_blank" rel="external">updateByQuery</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-delete" target="_blank" rel="external">delete</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-bulk" target="_blank" rel="external">bulk</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-exists" target="_blank" rel="external">exists</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-count" target="_blank" rel="external">count</a></li>
+</ul>
+<h1 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h1><ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-search" target="_blank" rel="external">search</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-msearch" target="_blank" rel="external">msearch</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-suggest" target="_blank" rel="external">suggest</a></li>
+</ul>
+<h3 id="Scroll"><a href="#Scroll" class="headerlink" title="Scroll"></a>Scroll</h3><ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-scroll" target="_blank" rel="external">scroll</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-clearscroll" target="_blank" rel="external">clearScroll</a></li>
+</ul>
+<h3 id="geo"><a href="#geo" class="headerlink" title="geo"></a>geo</h3><ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-percolate" target="_blank" rel="external">percolate</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-mpercolate" target="_blank" rel="external">mpercolate</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-countpercolate" target="_blank" rel="external">countPercolate</a></li>
+</ul>
+<!---
+### Template
+use the mustache language to pre render search requests
+* [searchTemplate]
+* [putTemplate]
+* [getTemplate]
+* [deleteTemplate]
+* [renderSearchTemplate]
+-->
+<h1 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h1><ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-explain" target="_blank" rel="external">explain</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-fieldstats" target="_blank" rel="external">fieldStats</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-searchshards" target="_blank" rel="external">searchShards</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-indices-analyze" target="_blank" rel="external">indices.analyze</a></li>
+</ul>
+<p>Returns information and statistics on terms in the fields of a particular document.</p>
+<ul>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-termvectors" target="_blank" rel="external">termvectors</a></li>
+<li><a href="https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/api-reference.html#api-mtermvectors" target="_blank" rel="external">mtermvectors</a></li>
+</ul>
+<!--
+indices.close
+
+indices.clearCache
+indices.deleteAlias
+indices.deleteTemplate
+indices.deleteWarmer
+indices.exists
+indices.existsAlias
+indices.existsTemplate
+indices.existsType
+indices.flush
+indices.flushSynced
+indices.forcemerge
+
+indices.getAlias
+indices.getAliases
+indices.getFieldMapping
+
+
+indices.getTemplate
+indices.getUpgrade
+indices.getWarmer
+indices.open
+indices.optimize
+indices.putAlias
+
+indices.putTemplate
+indices.putWarmer
+indices.recovery
+indices.refresh
+indices.segments
+indices.shardStores
+indices.stats
+indices.updateAliases
+indices.upgrade
+indices.validateQuery
+-->
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/elasticsearch/">elasticsearch</a>
+  </div>
+
+        <div class="fb-like"
+     data-href="http://blog.btrie.com/2016/07/30/elasticsearch-nodejs-cheatsheet/index.html"
+     data-layout="button_count">
+</div>
+<div class="fb-share-button"
+     data-href="http://blog.btrie.com/2016/07/30/elasticsearch-nodejs-cheatsheet/index.html"
+     data-layout="button_count">
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+
+<div class="fb-comments" data-href="http://blog.btrie.com/2016/07/30/elasticsearch-nodejs-cheatsheet/index.html" data-num-posts="5"
+     data-width="840" data-colorscheme="light">
+</div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" placeholder="Search">
+    <input type="hidden" name="q" value="site:blog.btrie.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css/">css</a><small>1</small></li>
+  
+    <li><a href="/tags/elasticsearch/">elasticsearch</a><small>2</small></li>
+  
+    <li><a href="/tags/html/">html</a><small>1</small></li>
+  
+    <li><a href="/tags/other/">other</a><small>2</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+
+  
+  &copy; 2016 <a href="http://btrie.com">btrie.com</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-80654255-2', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '505523602969473',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</body>
+</html>

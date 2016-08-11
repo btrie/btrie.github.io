@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Elasticsearch 架構 | Btrie Blog</title>
+  <meta name="author" content="btrie.com">
+
+  <meta name="description" content="Storage  儲存資料
+Index  建立資料索引
+Search  搜尋資料
+Relevance  評比搜尋結果相關性
+Aggregate  搜尋結果後續處理
+Feature  其他功能">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Elasticsearch 架構">
+<meta property="og:url" content="http://blog.btrie.com/2016/08/11/elasticsearch/index.html">
+<meta property="og:site_name" content="Btrie Blog">
+<meta property="og:description" content="Storage  儲存資料
+Index  建立資料索引
+Search  搜尋資料
+Relevance  評比搜尋結果相關性
+Aggregate  搜尋結果後續處理
+Feature  其他功能">
+<meta property="og:updated_time" content="2016-08-11T02:54:15.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Elasticsearch 架構">
+<meta name="twitter:description" content="Storage  儲存資料
+Index  建立資料索引
+Search  搜尋資料
+Relevance  評比搜尋結果相關性
+Aggregate  搜尋結果後續處理
+Feature  其他功能">
+<meta property="fb:app_id" content="505523602969473">
+
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+  
+  <meta name="google-site-verification" content="8B6cPk_OXHv0e-EYAABTwu-lWiovmNLQMebwF7WE9fg" />
+  
+
+  <link href="/favicon.png" rel="icon">
+  <link rel="alternate" href="/atom.xml" title="Btrie Blog" type="application/atom+xml">
+  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+</head>
+
+
+<body>
+  <header id="header" class="inner"><div class="alignleft">
+  <h1><a href="/">Btrie Blog</a></h1>
+  <h2>Simple is Better</h2>
+</div>
+<nav id="main-nav" class="alignright">
+  <ul>
+    
+      <li><a href="/atom.xml">RSS</a></li>
+    
+      <li><a href="/about">About</a></li>
+    
+  </ul>
+  <div class="clearfix"></div>
+</nav>
+<div class="clearfix"></div>
+</header>
+  <div id="content" class="inner">
+    <div id="main-col" class="alignleft"><div id="wrapper"><article class="post">
+  
+  <div class="post-content">
+    <header>
+      
+        <time datetime="2016-08-11T02:18:00.000Z"><a href="/2016/08/11/elasticsearch/">2016-08-11</a></time>
+      
+      
+  
+    <h1 class="title">Elasticsearch 架構</h1>
+  
+
+    </header>
+    <div class="entry">
+      
+        <ul>
+<li><a href="#Storage">Storage</a>  儲存資料</li>
+<li><a href="#Index">Index</a>  建立資料索引</li>
+<li><a href="#Search">Search</a>  搜尋資料</li>
+<li><a href="#Relevance">Relevance</a>  評比搜尋結果相關性</li>
+<li><a href="#Aggregate">Aggregate</a>  搜尋結果後續處理</li>
+<li><a href="#Feature">Feature</a>  其他功能</li>
+</ul>
+<a id="more"></a>
+<h1 id="Storage"><a href="#Storage" class="headerlink" title="Storage"></a>Storage</h1><p>儲存方式與mongo類似, 每筆資料為document, index對應mongo collection,<br>id對應mongo id, type則表示document 有相同 schema(mapping).</p>
+<h3 id="index-type-id"><a href="#index-type-id" class="headerlink" title="index/type/id"></a>index/type/id</h3><ul>
+<li><code>_index</code>  is a collection of document, 類似 mongodb collection<ul>
+<li>Every index is built of one or more shards, and each shard can have many replicas.</li>
+</ul>
+</li>
+<li><code>_type</code>  sub-partitions, 不同schema給不同type<ul>
+<li>name</li>
+<li>mapping  定義 field type, 將 document 轉成 lucene 格式</li>
+<li>lucene 並沒有 type, mapping</li>
+<li>all types in an index share same mapping, 即時在不同type也不能重複定義mapping</li>
+<li>同一個index的types, schema 要相近, sparse 會有 performance issue</li>
+</ul>
+</li>
+<li><code>_id</code>  uniquely identifies a document, provide your own <code>_id</code> or let Elasticsearch generate one for you</li>
+<li><code>_version</code>  <ul>
+<li>Every time a change is made to a document (including deleting it), the <code>_version</code> number is incremented.</li>
+<li>ensure that one part of your application doesn’t overwrite changes made by another part</li>
+<li>20 character long, URL-safe, Base64-encoded GUID strings</li>
+<li>FlakeID scheme</li>
+<li>Optimistic Concurrency Control</li>
+</ul>
+</li>
+<li><code>_source</code>  contains the original JSON document</li>
+<li><code>_uid</code>  The <code>_type</code> and <code>_id</code> concatenated together as type#id</li>
+</ul>
+<h3 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h3><ul>
+<li><strong>create</strong><br>Create a document only if the document does not already exist. See Creating a New Document.</li>
+<li><strong>index</strong><br>Create a new document or replace an existing document. See Indexing a Document and Updating a Whole Document.</li>
+<li><strong>update</strong><br>Do a partial update on a document. See Partial Updates to Documents.</li>
+<li><strong>delete</strong><br>Delete a document. See Deleting a Document.</li>
+</ul>
+<h3 id="cluster"><a href="#cluster" class="headerlink" title="cluster"></a>cluster</h3><h1 id="Index"><a href="#Index" class="headerlink" title="Index"></a>Index</h1><ul>
+<li><code>mapping</code>  定義欄位型態以及 analyzer, 透過mapping指定analyzer<ul>
+<li>can add a new field mapping</li>
+<li>can’t change existing field mappings</li>
+</ul>
+</li>
+<li>analysis  使用analyzer把欄位轉成terms</li>
+<li><code>analyzer</code>  由以下三個步驟組成<ul>
+<li><code>char_filter</code>  前置處理字串，例如拿掉HTML Tag<ul>
+<li>tidy up the string</li>
+<li>strip out HTML</li>
+<li>convert <code>&amp;</code> to <code>and</code></li>
+</ul>
+</li>
+<li><code>tokenizer</code><ul>
+<li>tokenize field value into individual <code>terms</code></li>
+<li>An analyzer must have a single tokenizer</li>
+</ul>
+</li>
+<li><code>filter</code>  add/remove/change terms<ul>
+<li>change terms<ul>
+<li>lowercasing</li>
+<li>stopwords (a, and, the)</li>
+</ul>
+</li>
+<li>add/remove terms<ul>
+<li>synonyms</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="Search"><a href="#Search" class="headerlink" title="Search"></a>Search</h1><ul>
+<li>full-text field<br>the query will apply the same analyzer to the query string</li>
+<li>exact-value field<br>search for the exact value that you have specified</li>
+</ul>
+<h1 id="Relevance"><a href="#Relevance" class="headerlink" title="Relevance"></a>Relevance</h1><ul>
+<li><code>_score</code>  The higher the <code>_score</code>, the more relevant the document.</li>
+<li><code>fuzzy</code>  determine the <code>_score</code> by calculating how similar the spelling of the found word is to the original search term</li>
+<li><code>terms</code>  incorporate the percentage of terms that were found</li>
+<li><code>explain=true</code>  the parameter produce an explanation with every search result<ul>
+<li><code>/index/type/id/_explain</code></li>
+</ul>
+</li>
+</ul>
+<p><em>TF/IDF</em>  term frequency/inverse document frequency</p>
+<ul>
+<li>Term frequency<br>term appear more often in the field, the more relevant</li>
+<li>Inverse document frequency<br>term appear more often in the index, the less relevant</li>
+<li>Field-length norm<br>field is more shorter, the less relevant</li>
+</ul>
+<p>其他演算法</p>
+<ul>
+<li>term proximity in phrase queries</li>
+<li>term similarity in fuzzy queries</li>
+</ul>
+<h1 id="Aggregate"><a href="#Aggregate" class="headerlink" title="Aggregate"></a>Aggregate</h1><h1 id="Feature"><a href="#Feature" class="headerlink" title="Feature"></a>Feature</h1><ul>
+<li>suggestions</li>
+<li>geolocation</li>
+<li>percolation</li>
+<li>fuzzy</li>
+<li>partial matching</li>
+</ul>
+
+      
+    </div>
+    <footer>
+      
+        
+        
+  
+  <div class="tags">
+    <a href="/tags/elasticsearch/">elasticsearch</a>
+  </div>
+
+        <div class="fb-like"
+     data-href="http://blog.btrie.com/2016/08/11/elasticsearch/index.html"
+     data-layout="button_count">
+</div>
+<div class="fb-share-button"
+     data-href="http://blog.btrie.com/2016/08/11/elasticsearch/index.html"
+     data-layout="button_count">
+</div>
+      
+      <div class="clearfix"></div>
+    </footer>
+  </div>
+</article>
+
+
+<section id="comment">
+  <h1 class="title">Comments</h1>
+
+  
+      <div id="fb-root"></div>
+
+<div class="fb-comments" data-href="http://blog.btrie.com/2016/08/11/elasticsearch/index.html" data-num-posts="5"
+     data-width="840" data-colorscheme="light">
+</div>
+      
+  
+</section>
+
+</div></div>
+    <aside id="sidebar" class="alignright">
+  <div class="search">
+  <form action="//google.com/search" method="get" accept-charset="utf-8">
+    <input type="search" name="q" placeholder="Search">
+    <input type="hidden" name="q" value="site:blog.btrie.com">
+  </form>
+</div>
+
+
+  
+<div class="widget tag">
+  <h3 class="title">Tags</h3>
+  <ul class="entry">
+  
+    <li><a href="/tags/css/">css</a><small>1</small></li>
+  
+    <li><a href="/tags/elasticsearch/">elasticsearch</a><small>2</small></li>
+  
+    <li><a href="/tags/html/">html</a><small>1</small></li>
+  
+    <li><a href="/tags/other/">other</a><small>2</small></li>
+  
+    <li><a href="/tags/vim/">vim</a><small>1</small></li>
+  
+  </ul>
+</div>
+
+</aside>
+    <div class="clearfix"></div>
+  </div>
+  <footer id="footer" class="inner"><div class="alignleft">
+
+  
+  &copy; 2016 <a href="http://btrie.com">btrie.com</a>
+  
+</div>
+<div class="clearfix"></div></footer>
+  
+
+
+
+<script>
+	(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	ga('create', 'UA-80654255-2', 'auto');
+	ga('send', 'pageview');
+
+</script>
+
+
+
+
+<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '505523602969473',
+      xfbml      : true,
+      version    : 'v2.6'
+    });
+  };
+
+  (function(d, s, id){
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) {return;}
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/sdk.js";
+    fjs.parentNode.insertBefore(js, fjs);
+  }(document, 'script', 'facebook-jssdk'));
+</script>
+
+</body>
+</html>
