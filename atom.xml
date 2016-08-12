@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.btrie.com/"/>
-  <updated>2016-08-11T10:17:13.000Z</updated>
+  <updated>2016-08-12T07:05:10.000Z</updated>
   <id>http://blog.btrie.com/</id>
   
   <author>
@@ -20,7 +20,7 @@
     <link href="http://blog.btrie.com/2016/08/11/english/"/>
     <id>http://blog.btrie.com/2016/08/11/english/</id>
     <published>2016-08-11T08:22:24.000Z</published>
-    <updated>2016-08-11T10:17:13.000Z</updated>
+    <updated>2016-08-12T07:05:10.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Basic&quot;&gt;&lt;a href=&quot;#Basic&quot; class=&quot;headerlink&quot; title=&quot;Basic&quot;&gt;&lt;/a&gt;Basic&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Basic_English&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Basic English&lt;/a&gt;&lt;/li&gt;
@@ -71,25 +71,36 @@
 &lt;li&gt;&lt;a href=&quot;http://english.stackexchange.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;English Q/A&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;Resources&quot;&gt;&lt;a href=&quot;#Resources&quot; class=&quot;headerlink&quot; title=&quot;Resources&quot;&gt;&lt;/a&gt;Resources&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/yvoronoy/awesome-english&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Awesome English&lt;/a&gt; A collection of awesome study resources for learners of English.&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://edition.cnn.com/studentnews&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;CNN Student News&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.bbc.co.uk/learningenglish/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;BBC Learning English&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://tw.voicetube.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;VoiceTube&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://soundsofspeech.uiowa.edu/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Sounds of Speech&lt;/a&gt; 發音&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://www.duolingo.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;duolingo&lt;/a&gt;  多國語言學習&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.businessweekly.com.tw/CBlogList.aspx?cid=0000000004&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;戒掉爛英文 世界公民文化中心&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;美劇&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://vmus.co/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;VM美劇 英劇 歐美影集 線上看&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://8drama.com/%E6%AD%90%E7%BE%8E%E5%8A%87%E5%88%97%E8%A1%A8/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;楓林網&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.funtude.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FunTude&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.businessweekly.com.tw/CBlogList.aspx?cid=0000000004&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;戒掉爛英文 世界公民文化中心&lt;/a&gt;  &lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://what-if.xkcd.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;what if?&lt;/a&gt; 漫畫&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;http://ieobserve.com/financial-literacy/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;financial literacy&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/yvoronoy/awesome-english&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Awesome English&lt;/a&gt; A collection of awesome study resources for learners of English.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;每日系列&quot;&gt;&lt;a href=&quot;#每日系列&quot; class=&quot;headerlink&quot; title=&quot;每日系列&quot;&gt;&lt;/a&gt;每日系列&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/user/dailydictation&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Daily Dictation&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/user/dailydictation/videos&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Daily Dictation&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=WMrqQu2-u4A&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;DD Intro done&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;排序最舊 Date added(oldest), 從第1集開始&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=32T-nyka0dM&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;第1集&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://tw.voicetube.com/everyday&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;VoiceTube每日口說挑戰&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://m.studioclassroom.com/radio.php&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;空英手機版&lt;/a&gt; 登入後選擇 &lt;strong&gt;Daily Radio&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.studioclassroom.com&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;空英電腦版&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;首頁只有 Daily Radio&lt;/li&gt;
+&lt;li&gt;選擇空英 -&amp;gt; Radio Programs, 有前2日的 Radio&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;iPhone -&amp;gt; 開啟 &lt;strong&gt;Podcast&lt;/strong&gt; -&amp;gt; 選擇 &lt;strong&gt;排行榜&lt;/strong&gt;&lt;ul&gt;
+&lt;li&gt;可預先下載&lt;/li&gt;
+&lt;li&gt;ESL (English as a Second Language)&lt;/li&gt;
+&lt;li&gt;6 Minute English (BBC)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h1 id=&quot;Books&quot;&gt;&lt;a href=&quot;#Books&quot; class=&quot;headerlink&quot; title=&quot;Books&quot;&gt;&lt;/a&gt;Books&lt;/h1&gt;&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.bartleby.com/141/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Elements of Style&lt;/a&gt;, Strunk, William/ White, E. B.  寫作&lt;/li&gt;
@@ -102,6 +113,12 @@
 &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Cryptonomicon&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Cryptonomicon&lt;/a&gt;, Neal Stephenson  編碼寶典&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Animal_Farm&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Animal Farm&lt;/a&gt; 動物農莊&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/The_Last_Lecture&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;The Last Lecture&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&quot;TV-Series&quot;&gt;&lt;a href=&quot;#TV-Series&quot; class=&quot;headerlink&quot; title=&quot;TV Series&quot;&gt;&lt;/a&gt;TV Series&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://vmus.co/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;VM美劇 英劇 歐美影集 線上看&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://moviesunusa.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;MovieSunusa&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://8drama.com/%E6%AD%90%E7%BE%8E%E5%8A%87%E5%88%97%E8%A1%A8/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;楓林網&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.funtude.com/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;FunTude&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </content>
     
