@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://blog.btrie.com/"/>
-  <updated>2016-08-12T07:05:10.000Z</updated>
+  <updated>2016-08-12T07:52:28.000Z</updated>
   <id>http://blog.btrie.com/</id>
   
   <author>
@@ -20,11 +20,15 @@
     <link href="http://blog.btrie.com/2016/08/11/english/"/>
     <id>http://blog.btrie.com/2016/08/11/english/</id>
     <published>2016-08-11T08:22:24.000Z</published>
-    <updated>2016-08-12T07:05:10.000Z</updated>
+    <updated>2016-08-12T07:52:28.000Z</updated>
     
     <content type="html">&lt;h1 id=&quot;Basic&quot;&gt;&lt;a href=&quot;#Basic&quot; class=&quot;headerlink&quot; title=&quot;Basic&quot;&gt;&lt;/a&gt;Basic&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Basic_English&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Basic English&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Wikipedia:List_of_1000_basic_words&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;List of 1000 basic words&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Business Academic Scientific International Commercial&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Basic_English&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Basic English&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wiktionary.org/wiki/Appendix:1000_basic_English_words&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;1000 words&lt;/a&gt;  for everyday work and life&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Wikipedia:Basic_English_combined_wordlist&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;2000 words&lt;/a&gt;  what any learner should know&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://xkcd.com/thing-explainer/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;Thing Explainer: Complicated Stuff in Simple Words&lt;/a&gt;, Randall Munroe&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/mortenjust/cleartext-mac&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;cleartext-mac&lt;/a&gt;&lt;br&gt;A text editor that only allows the top 1,000 most common words in English&lt;/li&gt;
 &lt;/ul&gt;
@@ -125,8 +129,12 @@
     <summary type="html">
     
       &lt;h1 id=&quot;Basic&quot;&gt;&lt;a href=&quot;#Basic&quot; class=&quot;headerlink&quot; title=&quot;Basic&quot;&gt;&lt;/a&gt;Basic&lt;/h1&gt;&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Basic_English&quot;&gt;Basic English&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Wikipedia:List_of_1000_basic_words&quot;&gt;List of 1000 basic words&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;Business Academic Scientific International Commercial&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Basic_English&quot;&gt;Basic English&lt;/a&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://en.wiktionary.org/wiki/Appendix:1000_basic_English_words&quot;&gt;1000 words&lt;/a&gt;  for everyday work and life&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://simple.wikipedia.org/wiki/Wikipedia:Basic_English_combined_wordlist&quot;&gt;2000 words&lt;/a&gt;  what any learner should know&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
 &lt;li&gt;&lt;a href=&quot;https://xkcd.com/thing-explainer/&quot;&gt;Thing Explainer: Complicated Stuff in Simple Words&lt;/a&gt;, Randall Munroe&lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;https://github.com/mortenjust/cleartext-mac&quot;&gt;cleartext-mac&lt;/a&gt;&lt;br&gt;A text editor that only allows the top 1,000 most common words in English&lt;/li&gt;
 &lt;/ul&gt;
